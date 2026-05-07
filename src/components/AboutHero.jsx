@@ -502,30 +502,96 @@ const AboutHero = () => {
             variants={itemVariants}
             className="relative flex flex-col items-center justify-center"
           >
-            {/* Main Image Card */}
-            <div className="relative group">
-              <div className={`absolute inset-[-3px] bg-gradient-to-r from-${currentTheme.accent} via-blue-500 to-purple-500 rounded-2xl animate-border-spin opacity-70 group-hover:opacity-100 transition-opacity duration-500 blur-sm group-hover:blur-md`} />
-              
-              <div className={`relative ${currentTheme.cardBg} backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:scale-[1.02]`}>
-                <div className="relative w-80 h-80 md:w-96 md:h-96 overflow-hidden">
-                  <img
-                    src={aboutHeroImg}
-                    alt="About Hero"
-                    className="w-full h-full object-cover object-bottom transition-all duration-700 group-hover:scale-110 block"
-                    style={{
-                      transform: `translate(${mousePosition.x * 0.008}px, ${mousePosition.y * 0.008}px)`
-                    }}
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-t from-${isDark ? 'black/60' : 'gray-900/40'} via-transparent to-transparent pointer-events-none`} />
-                </div>
-              </div>
+            {/* --- Upgraded Liquid Card Wrapper --- */}
+<div className="relative group cursor-pointer">
+  
+  {/* --- 1. Spinning Outer Border Glow (Theme Base) --- */}
+  {/* Is border ki shape ko bhi humne wavy (liquid) kar diya hai taake image ke saath blend ho */}
+  <motion.div
+    className="absolute inset-[-4px] opacity-70 group-hover:opacity-100 blur-sm group-hover:blur-md transition-opacity duration-500"
+    style={{
+      background: `conic-gradient(from 180deg at 50% 50%, ${currentTheme.accent} 0deg, #3b82f6 120deg, #8b5cf6 240deg, ${currentTheme.accent} 360deg)`,
+    }}
+    animate={{
+      borderRadius: [
+        "60% 40% 30% 70% / 60% 30% 70% 40%",
+        "30% 60% 70% 30% / 50% 60% 30% 60%",
+        "60% 40% 30% 70% / 60% 30% 70% 40%",
+      ],
+      rotate: [0, 360],
+    }}
+    transition={{
+      borderRadius: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+      rotate: { duration: 12, repeat: Infinity, ease: "linear" },
+    }}
+  />
 
-              <motion.div
-                animate={{ y: [0, -12, 0], rotate: [0, 5, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className={`absolute -top-6 -right-6 w-16 h-16 rounded-xl ${currentTheme.cardBg} backdrop-blur-md border-2 ${currentTheme.border} opacity-60 group-hover:opacity-100 transition-all duration-300`}
-              />
-            </div>
+  {/* --- 2. Main Liquid/Wavy Image Container --- */}
+  {/* Ab yahi main container hai, koi background rectangular div nahi hai */}
+  <motion.div
+    className={`relative w-80 h-80 md:w-96 md:h-96 overflow-hidden ${currentTheme.cardBg} backdrop-blur-md shadow-2xl transition-transform duration-500 group-hover:scale-[1.05]`}
+    /* Water Wave/Liquid Effect: Morphing the border radius */
+    animate={{
+      borderRadius: [
+        "60% 40% 30% 70% / 60% 30% 70% 40%",
+        "30% 60% 70% 30% / 50% 60% 30% 60%",
+        "60% 40% 30% 70% / 60% 30% 70% 40%",
+      ],
+    }}
+    transition={{
+      duration: 8,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+  >
+    {/* Main Image with Mouse Parallax & Extra Zoom */}
+    <motion.img
+      src={aboutHeroImg}
+      alt="About Hero"
+      className="w-[120%] h-[120%] max-w-none object-cover object-center group-hover:saturate-[1.3] transition-all duration-1000"
+      style={{
+        // Combining wavy container with smooth mouse movement
+        x: mousePosition.x * 0.02,
+        y: mousePosition.y * 0.02,
+        left: "-10%", // Image thodi bari rakhi hai taake edges par gaps na ayein
+        top: "-10%",
+        position: "absolute",
+      }}
+    />
+
+    {/* Upgrade: Liquid Overlay (Water-like Reflection) */}
+    <div className="absolute inset-0 pointer-events-none">
+      {/* Bottom shadow for depth */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-t from-${
+          isDark ? "black/70" : "gray-900/40"
+        } via-transparent to-transparent`}
+      />
+
+      {/* Moving Shine/Glare: Gives a wet/glassy look */}
+      <motion.div
+        animate={{
+          x: [-100, 400],
+          opacity: [0, 0.3, 0],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          repeatDelay: 1,
+          ease: "linear",
+        }}
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
+      />
+    </div>
+  </motion.div>
+
+  {/* --- 3. Floating Decorative Element (Top-Right) --- */}
+  <motion.div
+    animate={{ y: [0, -12, 0], rotate: [0, 5, 0] }}
+    transition={{ duration: 4, repeat: Infinity }}
+    className={`absolute -top-6 -right-6 w-16 h-16 rounded-xl ${currentTheme.cardBg} backdrop-blur-md border-2 ${currentTheme.border} opacity-60 group-hover:opacity-100 transition-all duration-300 z-10`}
+  />
+</div>
 
             {/* Height Box */}
             <motion.div 
