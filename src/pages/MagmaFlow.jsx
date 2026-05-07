@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Zap, Clock, Activity, Sparkles, Heart, Shield, Star, Moon, Sun } from 'lucide-react';
+import { ChevronLeft, Zap, Clock, Activity, Sparkles, Heart, Shield, Star, Moon, Sun, AlertTriangle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import MagmaFlowLoader from '../components/MagmaFlowLoader';
 
@@ -10,9 +10,11 @@ const MagmaFlow = () => {
   const [timeLeft, setTimeLeft] = useState(10);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [orbs, setOrbs] = useState([]);
+  const [penaltyOrbs, setPenaltyOrbs] = useState([]);
   const [isGameOver, setIsGameOver] = useState(false);
   const [bgIndex, setBgIndex] = useState(0);
   const [theme, setTheme] = useState('dark');
+  const [shake, setShake] = useState(false);
   const navigate = useNavigate();
 
   // Different beautiful backgrounds for each theme
@@ -31,6 +33,14 @@ const MagmaFlow = () => {
   ];
 
   const backgrounds = theme === 'dark' ? darkBackgrounds : lightBackgrounds;
+
+  // Shake effect for penalty
+  useEffect(() => {
+    if (shake) {
+      const timer = setTimeout(() => setShake(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [shake]);
 
   // Auto-change background
   useEffect(() => {
@@ -108,25 +118,57 @@ const MagmaFlow = () => {
     };
   }, []);
 
+  // Spawn normal orbs (Green/Pink - Time Boost)
   useEffect(() => {
     if (loading || isGameOver) return;
     const interval = setInterval(() => {
-      if (orbs.length < 6) {
+      if (orbs.length < 5) {
         setOrbs(prev => [...prev, {
           id: Math.random(),
           x: Math.random() * 80 + 10,
           y: Math.random() * 80 + 10,
-          size: Math.random() * 20 + 15
+          size: Math.random() * 20 + 15,
+          type: 'boost'
         }]);
       }
-    }, 1200);
+    }, 1000);
     return () => clearInterval(interval);
   }, [loading, orbs, isGameOver]);
 
-  const eatOrb = (id) => {
-    setOrbs(prev => prev.filter(orb => orb.id !== id));
-    setScore(s => s + 1);
-    setTimeLeft(t => t + 2);
+  // Spawn penalty orbs (Red/Dark - Time Penalty) - Less frequent for balance
+  useEffect(() => {
+    if (loading || isGameOver) return;
+    const penaltyInterval = setInterval(() => {
+      if (penaltyOrbs.length < 3) {
+        setPenaltyOrbs(prev => [...prev, {
+          id: Math.random(),
+          x: Math.random() * 80 + 10,
+          y: Math.random() * 80 + 10,
+          size: Math.random() * 18 + 12,
+          type: 'penalty'
+        }]);
+      }
+    }, 2500);
+    return () => clearInterval(penaltyInterval);
+  }, [loading, penaltyOrbs, isGameOver]);
+
+  const eatOrb = (id, type) => {
+    if (type === 'boost') {
+      setOrbs(prev => prev.filter(orb => orb.id !== id));
+      setScore(s => s + 1);
+      setTimeLeft(t => t + 2);
+    } else {
+      setPenaltyOrbs(prev => prev.filter(orb => orb.id !== id));
+      setShake(true);
+      setTimeLeft(t => {
+        const newTime = t - 2;
+        if (newTime <= 0) {
+          setIsGameOver(true);
+          return 0;
+        }
+        return newTime;
+      });
+    }
   };
 
   const toggleTheme = () => {
@@ -136,7 +178,7 @@ const MagmaFlow = () => {
   if (loading) return <MagmaFlowLoader />;
 
   return (
-    <div className={`relative h-screen w-full overflow-hidden cursor-none select-none font-sans transition-colors duration-700 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+    <div className={`relative h-screen w-full overflow-hidden cursor-none select-none font-sans transition-colors duration-700 ${isDark ? 'text-white' : 'text-gray-900'} ${shake ? 'animate-shake' : ''}`}>
       
       {/* Background with auto-change - Different for dark/light */}
       <div className="absolute inset-0 z-0">
@@ -194,26 +236,65 @@ const MagmaFlow = () => {
         />
       ))}
 
-      {/* Energy Orbs - Premium Design */}
+      {/* Energy Orbs - Boost Orbs (Greenish/Pink - Time +2) */}
       {!isGameOver && orbs.map((orb) => (
         <motion.div
           key={orb.id}
           initial={{ scale: 0, rotate: -180, opacity: 0 }}
           animate={{ scale: 1, rotate: 0, opacity: 1 }}
           exit={{ scale: 2, opacity: 0, filter: "blur(15px)" }}
-          onMouseEnter={() => eatOrb(orb.id)}
-          onTouchStart={() => eatOrb(orb.id)}
+          onMouseEnter={() => eatOrb(orb.id, 'boost')}
+          onTouchStart={() => eatOrb(orb.id, 'boost')}
           className="fixed z-40 cursor-pointer"
           style={{ left: `${orb.x}%`, top: `${orb.y}%` }}
         >
           <motion.div
-            animate={{ scale: [1, 1.1, 1], rotate: [0, 90, 0] }}
+            animate={{ 
+              scale: [1, 1.15, 1], 
+              rotate: [0, 90, 0],
+              y: [0, -5, 0]
+            }}
             transition={{ duration: 1.5, repeat: Infinity }}
             className="relative flex items-center justify-center"
           >
-            <div className={`absolute inset-0 ${isDark ? 'bg-rose-500/40' : 'bg-rose-400/30'} blur-xl animate-pulse rounded-full`} />
-            <div className={`w-10 h-10 bg-gradient-to-br ${isDark ? 'from-rose-500 to-pink-600' : 'from-rose-400 to-pink-500'} rounded-xl rotate-45 flex items-center justify-center shadow-2xl border ${isDark ? 'border-white/30' : 'border-white/50'}`}>
+            <div className={`absolute inset-0 ${isDark ? 'bg-emerald-500/40' : 'bg-emerald-400/30'} blur-xl animate-pulse rounded-full`} />
+            <div className={`w-10 h-10 bg-gradient-to-br ${isDark ? 'from-emerald-500 to-teal-600' : 'from-emerald-400 to-teal-500'} rounded-xl rotate-45 flex items-center justify-center shadow-2xl border ${isDark ? 'border-white/30' : 'border-white/50'}`}>
               <Zap size={14} fill="white" className="-rotate-45 text-white" />
+            </div>
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[8px] font-black text-emerald-400 whitespace-nowrap">
+              +2s
+            </div>
+          </motion.div>
+        </motion.div>
+      ))}
+
+      {/* Penalty Orbs (Red/Dark - Time -2) */}
+      {!isGameOver && penaltyOrbs.map((orb) => (
+        <motion.div
+          key={`penalty-${orb.id}`}
+          initial={{ scale: 0, rotate: 180, opacity: 0 }}
+          animate={{ scale: 1, rotate: 0, opacity: 1 }}
+          exit={{ scale: 2, opacity: 0, filter: "blur(15px)" }}
+          onMouseEnter={() => eatOrb(orb.id, 'penalty')}
+          onTouchStart={() => eatOrb(orb.id, 'penalty')}
+          className="fixed z-40 cursor-pointer"
+          style={{ left: `${orb.x}%`, top: `${orb.y}%` }}
+        >
+          <motion.div
+            animate={{ 
+              scale: [1, 1.1, 1], 
+              rotate: [0, -90, 0],
+              y: [0, 5, 0]
+            }}
+            transition={{ duration: 1.2, repeat: Infinity }}
+            className="relative flex items-center justify-center"
+          >
+            <div className={`absolute inset-0 ${isDark ? 'bg-red-600/50' : 'bg-red-500/40'} blur-xl animate-pulse rounded-full`} />
+            <div className={`w-10 h-10 bg-gradient-to-br ${isDark ? 'from-red-600 to-rose-700' : 'from-red-500 to-rose-600'} rounded-xl -rotate-45 flex items-center justify-center shadow-2xl border ${isDark ? 'border-red-400/50' : 'border-red-300/60'}`}>
+              <AlertTriangle size={14} fill="white" className="rotate-45 text-white" />
+            </div>
+            <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[8px] font-black text-red-400 whitespace-nowrap">
+              -2s
             </div>
           </motion.div>
         </motion.div>
@@ -245,7 +326,6 @@ const MagmaFlow = () => {
             </div>
 
             <div className="text-right">
-               
               <div className="flex items-center gap-1 justify-end">
                 <p className={`text-2xl md:text-3xl font-black ${isDark ? 'text-rose-400' : 'text-rose-600'}`}>{score}</p>
                 <Star size={14} className="text-yellow-400" />
@@ -301,7 +381,7 @@ const MagmaFlow = () => {
           </div>
           <div className={`backdrop-blur-md rounded-full px-3 py-1 ${isDark ? 'bg-white/5' : 'bg-black/5'}`}>
             <p className={`text-[6px] font-mono tracking-tighter ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
-              X: {Math.round(mousePos.x)} | Y: {Math.round(mousePos.y)}
+              🟢 +2s | 🔴 -2s
             </p>
           </div>
         </div>
@@ -362,6 +442,17 @@ const MagmaFlow = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style jsx="true">{`
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-5px); }
+          75% { transform: translateX(5px); }
+        }
+        .animate-shake {
+          animation: shake 0.3s ease-in-out;
+        }
+      `}</style>
     </div>
   );
 };

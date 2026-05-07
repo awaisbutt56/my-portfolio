@@ -246,9 +246,9 @@ const HomeheroOne = () => {
               <div className="relative w-14 h-14 md:w-20 md:h-20 rounded-full overflow-hidden shadow-2xl transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-12">
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-500/30 to-blue-500/30 z-10"></div>
                 <img 
-  src={navImg}  // Quotes nahi lagani, variable use karna hai
+  src={navImg} 
   alt="Profile" 
-  className="w-full h-full object-cover scale-110 transition-all duration-700 group-hover:scale-125 mt-10"
+  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
 />
               </div>
 
