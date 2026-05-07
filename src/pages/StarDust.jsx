@@ -326,7 +326,7 @@ const StarDust = () => {
                   <motion.button
                     whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(168,85,247,0.5)" }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => window.location.href = '/HeroTwo'}
+                    onClick={() => window.history.back()}
                     className={`px-10 py-4 md:px-14 md:py-5 font-black tracking-[0.2em] text-xs md:text-sm rounded-full transition-all duration-300 shadow-2xl flex items-center gap-2
                       ${theme === 'dark' ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600' : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700'}`}
                   >
