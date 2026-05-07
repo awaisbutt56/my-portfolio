@@ -698,17 +698,28 @@ const Logo = ({ theme }) => (
     initial={{ opacity: 0, x: -20 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 1, delay: 0.5 }}
-    className="fixed top-6 left-6 md:top-10 md:left-10 z-[100] flex items-center gap-3 pointer-events-auto cursor-pointer group"
+    className="fixed top-6 left-6 md:top-10 md:left-12 z-[100] flex items-center gap-3 pointer-events-auto cursor-pointer group"
   >
-    <div className="relative group h-10 w-10 md:h-12 md:w-12 flex items-center justify-center overflow-hidden rounded-full">
-      <div className={`absolute inset-0 rounded-full blur-md opacity-70 group-hover:opacity-100 transition duration-300 ${theme === 'dark' ? 'bg-purple-500/20' : 'bg-pink-400/30'}`} />
-      <img 
-        src={firstCardImg}
-        alt="Zenith Logo"
-        className="relative z-10 w-[110%] h-[110%] object-contain transition-all duration-300 ease-out group-hover:scale-110"
-      />
+    {/* Main Container - Size increased */}
+    <div className="relative group h-14 w-14 md:h-20 md:w-20 flex items-center justify-center overflow-hidden rounded-full p-[2px]">
+      
+      {/* Animated Rotating Border (The Magic Part) */}
+      <div className={`absolute inset-0 rounded-full animate-spin-slow bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 opacity-80 group-hover:opacity-100`} />
+      
+      {/* Background Blur / Glow */}
+      <div className={`absolute inset-0 rounded-full blur-xl opacity-60 group-hover:opacity-100 transition duration-500 ${theme === 'dark' ? 'bg-cyan-500/40' : 'bg-pink-400/40'}`} />
+
+      {/* Image Container */}
+      <div className="relative z-10 w-full h-full rounded-full bg-[#0a0a0a] overflow-hidden flex items-center justify-center">
+        <img 
+          src={firstCardImg}
+          alt="Zenith Logo"
+          // object-cover aur w-full h-full se image perfectly fit ho jaye gi
+          className="w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-125 filter group-hover:brightness-110"
+        />
+      </div>
     </div>
-  </motion.div>
+</motion.div>
 )
 
 // ─── Root Component ───────────────────────────────────────────────────────────

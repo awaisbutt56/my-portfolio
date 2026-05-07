@@ -156,6 +156,7 @@ const DimensionalRiftLoader = ({ onFinished }) => {
     const liquidColor = isActive ? activeColor : "rgba(255,255,255,0.1)"; // Liquid color
 
     return (
+      
       <div className={`relative h-6 w-6 rounded-full overflow-hidden border-2 transition-all duration-300 ${isActive ? '' : 'border-white/10'}`}
         style={{
           borderColor: baseColor,
@@ -185,6 +186,8 @@ const DimensionalRiftLoader = ({ onFinished }) => {
         {/* Shine highlight */}
         <div className="absolute top-1 left-1 h-2 w-2 bg-white/40 rounded-full blur-[1px]"></div>
       </div>
+
+      
     );
   };
 
@@ -225,14 +228,38 @@ const DimensionalRiftLoader = ({ onFinished }) => {
             </div>
           </div>
 
+          
+
           {/* Interaction Indicators - UPGRADED TO LIQUID EFFECT */}
           <div className="flex justify-center gap-8 pt-4">
             <LiquidIndicator currentPercent={percent} threshold={25} activeColor="#00ffff" /> {/* Cyan */}
             <LiquidIndicator currentPercent={percent} threshold={50} activeColor="#ff00ff" /> {/* Magenta */}
             <LiquidIndicator currentPercent={percent} threshold={75} activeColor="#ffffff" /> {/* White */}
           </div>
+
+          <div className="w-full text-center py-6 px-4">
+  <h1 className="group cursor-default">
+    <span className="block text-sm md:text-base font-medium tracking-[0.3em] text-purple-400 uppercase mb-2 animate-pulse">
+      Interactive Experience
+    </span>
+    <span className="text-2xl md:text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-400 to-indigo-400 transition-all duration-500 group-hover:tracking-widest drop-shadow-[0_0_15px_rgba(103,232,249,0.3)]">
+      Tap & see the 
+      <span className="relative inline-block ml-3">
+        <span className="relative z-10 bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+          MAGIC
+        </span>
+        <span className="absolute -inset-1 bg-purple-500/20 blur-lg rounded-full"></span>
+      </span>
+       
+    </span>
+  </h1>
+</div>
+
+          
         </div>
       </div>
+
+      
 
       {/* Grid Distortion */}
       <div className="absolute inset-0 pointer-events-none opacity-20" 
@@ -244,6 +271,10 @@ const DimensionalRiftLoader = ({ onFinished }) => {
 
       {/* Noise Grain */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04] bg-[url('https://res.cloudinary.com/dyd911kmh/image/upload/v1640050215/grain_u8706t.png')]"></div>
+
+
+
+      
 
       <style jsx>{`
         @keyframes scanline {
@@ -269,6 +300,7 @@ const DimensionalRiftLoader = ({ onFinished }) => {
         }
       `}</style>
     </div>
+    
   );
 };
 

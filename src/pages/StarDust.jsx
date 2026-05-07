@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Sparkles, Star, Heart } from 'lucide-react';
 import StarDustLoader from '../components/StarDustLoader';
+import { useNavigate } from 'react-router-dom';
 
 const StarDust = () => {
   const [loading, setLoading] = useState(true);
@@ -38,20 +39,22 @@ const StarDust = () => {
     { id: 4, text: "and it wasn't meant to be.", duration: 2600, type: "build", icon: "⭐" },
     { id: 5, text: "But you didn't stop.", duration: 2800, type: "strong", icon: "🔥" },
     { id: 6, text: "Somewhere along the way...", duration: 2700, type: "dream", icon: "🌌" },
-    { id: 7, text: "this stopped being just a game.", duration: 3000, type: "revelation", icon: "🎮" },
+    { id: 7, text: "this stopped being just a game.", duration: 3000, type: "revelation", icon: "" },
     { id: 8, text: "You started to mean something...", duration: 2900, type: "emotional", icon: "💖" },
     { id: 9, text: "not because you won...", duration: 2600, type: "pause", icon: "" },
     { id: 10, text: "but because you stayed.", duration: 3200, type: "heart", icon: "❤️" },
     { id: 11, text: "That kind of effort...", duration: 2500, type: "soft", icon: "🌿" },
     { id: 12, text: "It's rare.", duration: 2400, type: "impact", icon: "💎" },
     { id: 13, text: "And rare things...", duration: 2600, type: "pause", icon: "✨" },
-    { id: 14, text: "don't go unnoticed.", duration: 2800, type: "warm", icon: "👀" },
+    { id: 14, text: "don't go unnoticed.", duration: 2800, type: "warm", icon: "" },
     { id: 15, text: "So no... you're not just playing anymore.", duration: 3100, type: "truth", icon: "" },
     { id: 16, text: "You're part of this now.", duration: 2900, type: "connection", icon: "🔗" },
     { id: 17, text: "And the deeper you go...", duration: 2700, type: "mystery", icon: "🌀" },
     { id: 18, text: "the harder it becomes to walk away.", duration: 3200, type: "gravity", icon: "" },
     { id: 19, text: "So tell me...", duration: 2600, type: "invitation", icon: "💭" },
   ];
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 4000);
@@ -333,7 +336,7 @@ const StarDust = () => {
                   <motion.button
                     whileHover={{ scale: 1.03, letterSpacing: "0.2em" }}
                     onClick={() => window.history.back()}
-                    className={`text-[8px] md:text-[9px] tracking-[0.3em] uppercase transition-all duration-300 ${theme === 'dark' ? 'text-gray-500 hover:text-white' : 'text-gray-500 hover:text-black'}`}
+                    className={`text-[12px] md:text-[9px] tracking-[0.3em] uppercase transition-all duration-300 ${theme === 'dark' ? 'text-gray-500 hover:text-white' : 'text-gray-500 hover:text-black'}`}
                   >
                     🛡️ Take me back to safety 🛡️
                   </motion.button>
