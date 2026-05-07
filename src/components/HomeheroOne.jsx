@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import navImg from '../assets/images/navbarr.jpg';
 
 const HomeheroOne = () => {
   const navigate = useNavigate();
@@ -245,10 +246,10 @@ const HomeheroOne = () => {
               <div className="relative w-14 h-14 md:w-20 md:h-20 rounded-full overflow-hidden shadow-2xl transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-12">
                 <div className="absolute inset-0 bg-gradient-to-br from-pink-500/30 to-blue-500/30 z-10"></div>
                 <img 
-                  src="src/assets/images/navbarr.jpg" 
-                  alt="Profile" 
-                  className="w-full h-full object-cover scale-110 transition-all duration-700 group-hover:scale-125"
-                />
+  src={navImg}  // Quotes nahi lagani, variable use karna hai
+  alt="Profile" 
+  className="w-full h-full object-cover scale-110 transition-all duration-700 group-hover:scale-125"
+/>
               </div>
 
               {/* Heartbeat Pulse */}
