@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext'; // Import global theme hook
 import aboutHeroImg from '../assets/images/aboutimghero.jpeg';
+import aboutHeroImgone from '../assets/images/aboutHeroImgone.jpeg';
+
 
 const AboutHero = () => {
   // Global theme se le rahe hain - NO local theme state
@@ -193,6 +195,17 @@ const AboutHero = () => {
     if (type === 1) return currentTheme.bubbleColor2;
     return currentTheme.bubbleColor3;
   };
+
+  const [imageIndex, setImageIndex] = useState(0);
+const images = [aboutHeroImg, aboutHeroImgone ]; // Yahan apni 4 images add kar dein
+
+useEffect(() => {
+  const timer = setInterval(() => {
+    setImageIndex((prev) => (prev + 1) % images.length);
+  }, 8000); // Har 4 seconds baad change
+  return () => clearInterval(timer);
+}, []);
+
 
   return (
     <section className={`relative min-h-screen ${currentTheme.bg} ${currentTheme.text} flex flex-col justify-center items-center px-6 overflow-hidden transition-colors duration-700`}>
@@ -527,63 +540,60 @@ const AboutHero = () => {
   />
 
   {/* --- 2. Main Liquid/Wavy Image Container --- */}
-  {/* Ab yahi main container hai, koi background rectangular div nahi hai */}
-  <motion.div
-    className={`relative w-80 h-80 md:w-96 md:h-96 overflow-hidden ${currentTheme.cardBg} backdrop-blur-md shadow-2xl transition-transform duration-500 group-hover:scale-[1.05]`}
-    /* Water Wave/Liquid Effect: Morphing the border radius */
-    animate={{
-      borderRadius: [
-        "60% 40% 30% 70% / 60% 30% 70% 40%",
-        "30% 60% 70% 30% / 50% 60% 30% 60%",
-        "60% 40% 30% 70% / 60% 30% 70% 40%",
-      ],
-    }}
-    transition={{
-      duration: 8,
-      repeat: Infinity,
-      ease: "easeInOut",
-    }}
-  >
-    {/* Main Image with Mouse Parallax & Extra Zoom */}
+<motion.div
+  className={`relative w-80 h-80 md:w-96 md:h-96 overflow-hidden ${currentTheme.cardBg} backdrop-blur-md shadow-2xl transition-transform duration-500 group-hover:scale-[1.05]`}
+  animate={{
+    borderRadius: [
+      "60% 40% 30% 70% / 60% 30% 70% 40%",
+      "30% 60% 70% 30% / 50% 60% 30% 60%",
+      "60% 40% 30% 70% / 60% 30% 70% 40%",
+    ],
+  }}
+  transition={{
+    duration: 8,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+>
+  {/* AnimatePresence helps in smooth cross-fading of images */}
+  <AnimatePresence mode="wait">
     <motion.img
-      src={aboutHeroImg}
-      alt="About Hero"
-      className="w-[120%] h-[120%] max-w-none object-cover object-center group-hover:saturate-[1.3] transition-all duration-1000"
+      key={imageIndex} // Unique key for each image change
+      src={images[imageIndex]}
+      initial={{ opacity: 0, scale: 1.2 }}
+      animate={{ opacity: 1, scale: 1.15 }}
+      exit={{ opacity: 0, scale: 1.1 }}
+      transition={{ duration: 1.5, ease: "easeInOut" }}
+      alt="Hero Slideshow"
+      className="w-[125%] h-[125%] max-w-none object-cover object-center group-hover:saturate-[1.3] absolute"
       style={{
-        // Combining wavy container with smooth mouse movement
         x: mousePosition.x * 0.02,
         y: mousePosition.y * 0.02,
-        left: "-10%", // Image thodi bari rakhi hai taake edges par gaps na ayein
-        top: "-10%",
-        position: "absolute",
+        left: "-12.5%",
+        top: "-12.5%",
       }}
     />
+  </AnimatePresence>
 
-    {/* Upgrade: Liquid Overlay (Water-like Reflection) */}
-    <div className="absolute inset-0 pointer-events-none">
-      {/* Bottom shadow for depth */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-t from-${
-          isDark ? "black/70" : "gray-900/40"
-        } via-transparent to-transparent`}
-      />
-
-      {/* Moving Shine/Glare: Gives a wet/glassy look */}
-      <motion.div
-        animate={{
-          x: [-100, 400],
-          opacity: [0, 0.3, 0],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          repeatDelay: 1,
-          ease: "linear",
-        }}
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
-      />
-    </div>
-  </motion.div>
+  {/* Overlay elements stay on top of the changing images */}
+  <div className="absolute inset-0 pointer-events-none z-10">
+    <div className={`absolute inset-0 bg-gradient-to-t from-${isDark ? "black/70" : "gray-900/40"} via-transparent to-transparent`} />
+    
+    <motion.div
+      animate={{
+        x: [-100, 400],
+        opacity: [0, 0.3, 0],
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        repeatDelay: 1,
+        ease: "linear",
+      }}
+      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
+    />
+  </div>
+</motion.div>
 
   {/* --- 3. Floating Decorative Element (Top-Right) --- */}
   <motion.div

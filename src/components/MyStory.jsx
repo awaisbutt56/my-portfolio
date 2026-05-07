@@ -51,7 +51,7 @@ const storyData = [
     id: "pro",
     label: "05. Growth",
     heading: "Stampa Solutions",
-    subtext: "Today I work at Stampa Solutions in Lahore building real products with real teams where every detail counts. It's not just about code it's about real impact. I focus on growth not comfort always improving and never settling because I want to be better than yesterday.",
+    subtext: "Today I work at Stampa Solutions building real products with real teams where every detail counts. It's not just about code it's about real impact. I focus on growth not comfort always improving and never settling because I want to be better than yesterday.",
     color: "from-blue-600 to-cyan-400",
     lightColor: "from-blue-700 to-cyan-500",
     icon: "🚀",
