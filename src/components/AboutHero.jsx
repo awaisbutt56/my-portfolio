@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext'; // Import global theme hook
+import aboutHeroImg from '../assets/images/aboutimghero.jpeg';
 
 const AboutHero = () => {
   // Global theme se le rahe hain - NO local theme state
@@ -508,8 +509,8 @@ const AboutHero = () => {
               <div className={`relative ${currentTheme.cardBg} backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:scale-[1.02]`}>
                 <div className="relative w-80 h-80 md:w-96 md:h-96 overflow-hidden">
                   <img
-                    src="public/images/aboutimghero.jpeg"
-                    alt="Muhammad Awais Butt"
+                    src={aboutHeroImg}
+                    alt="About Hero"
                     className="w-full h-full object-cover object-bottom transition-all duration-700 group-hover:scale-110 block"
                     style={{
                       transform: `translate(${mousePosition.x * 0.008}px, ${mousePosition.y * 0.008}px)`

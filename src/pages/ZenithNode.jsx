@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Moon, Sun, Sparkles } from 'lucide-react'
 import ZenithNodeLoader from '../components/ZenithNodeLoader'
+import firstCardImg from '../assets/images/dpfirstcard.jpeg';
 
 // ─── Script Lines ─────────────────────────────────────────────────────────────
 const SCRIPT_LINES = [
@@ -702,7 +703,7 @@ const Logo = ({ theme }) => (
     <div className="relative group h-10 w-10 md:h-12 md:w-12 flex items-center justify-center overflow-hidden rounded-full">
       <div className={`absolute inset-0 rounded-full blur-md opacity-70 group-hover:opacity-100 transition duration-300 ${theme === 'dark' ? 'bg-purple-500/20' : 'bg-pink-400/30'}`} />
       <img 
-        src="/images/navbarr.jpg"
+        src={firstCardImg}
         alt="Zenith Logo"
         className="relative z-10 w-[110%] h-[110%] object-contain transition-all duration-300 ease-out group-hover:scale-110"
       />

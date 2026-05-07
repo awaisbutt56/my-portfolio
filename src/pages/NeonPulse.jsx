@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, ChevronLeft, Sparkles, Zap, ShieldCheck, Moon, Sun, Star, Award, Gem, Crown } from 'lucide-react';
 import NeonPulseLoader from '../components/NeonPulseLoader';
+import firstCardImg from '../assets/images/dpfirstcard.jpeg';
+import dpAwais from '../assets/dpawais.jpeg';
 
 const NeonPulse = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -179,7 +181,7 @@ const NeonPulse = () => {
           {/* Glow behind watermark */}
           <div className={`absolute inset-0 bg-gradient-to-r ${currentTheme.accent} blur-2xl rounded-full ${currentTheme.watermarkOpacity}`} />
           <img 
-            src="public/images/dpawais.jpeg" 
+            src={dpAwais} 
             alt="Watermark"
             className={`w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-full ${currentTheme.watermarkOpacity} blur-[1px] transition-all duration-500`}
           />
@@ -210,7 +212,7 @@ const NeonPulse = () => {
               <div className="relative p-[2px] rounded-full bg-gradient-to-r from-rose-500 via-purple-500 to-cyan-500">
                 <div className={`${theme === 'dark' ? 'bg-black' : 'bg-white'} rounded-full p-1.5 md:p-2`}>
                   <img 
-                    src="public/images/dpfirstcard.jpeg"
+                    src={firstCardImg}
                     alt="Logo"
                     className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 object-cover rounded-full"
                   />

@@ -248,7 +248,7 @@ const HomeheroOne = () => {
                 <img 
   src={navImg}  // Quotes nahi lagani, variable use karna hai
   alt="Profile" 
-  className="w-full h-full object-cover scale-110 transition-all duration-700 group-hover:scale-125"
+  className="w-full h-full object-cover scale-110 transition-all duration-700 group-hover:scale-125 mt-10"
 />
               </div>
 
