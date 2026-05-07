@@ -202,7 +202,7 @@ const StarDust = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
-        className={`fixed top-5 left-5 z-50 rounded-full px-4 py-2 backdrop-blur-xl border flex items-center gap-2 text-xs font-bold tracking-wider
+        className={`fixed top-5 left-11 z-50 rounded-full px-4 py-2 backdrop-blur-xl border flex items-center gap-2 text-xs font-bold tracking-wider
           ${theme === 'dark' ? 'bg-white/10 border-white/20 text-white' : 'bg-black/5 border-black/10 text-gray-700'}`}
       >
         <Star size={12} className="text-yellow-400" /> 100 ENERGY CARD <Sparkles size={12} className="text-purple-400" />
