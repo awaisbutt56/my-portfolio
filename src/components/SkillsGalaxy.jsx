@@ -10,22 +10,22 @@ const SkillsGalaxy = () => {
 
   // Left side skills
   const leftSkills = [
-    { name: "React.js", icon: "⚛️", color: "#22d3ee", lightColor: "#0891b2", level: 92, desc: "Building dynamic UIs with hooks & context" },
-    { name: "JavaScript", icon: "🟨", color: "#fbbf24", lightColor: "#d97706", level: 90, desc: "Modern JS, Async, DOM mastery" },
-    { name: "Redux Toolkit", icon: "🔴", color: "#a855f7", lightColor: "#7c3aed", level: 88, desc: "State management like a pro" },
-    { name: "API Integration", icon: "🔗", color: "#10b981", lightColor: "#059669", level: 85, desc: "RESTful APIs, GraphQL" },
-    { name: "Component Arch", icon: "🏗️", color: "#ec4899", lightColor: "#db2777", level: 90, desc: "Modular, reusable components" },
-    { name: "State Management", icon: "📦", color: "#f43f5e", lightColor: "#e11d48", level: 88, desc: "Zustand, Context, Redux" }
+    { name: "React.js", icon: "⚛️", color: "#22d3ee", lightColor: "#0891b2", level: 92, desc: "React.js helps me build fast, modern, and highly interactive web applications with smooth user experience, reusable components, scalable architecture, and clean frontend performance." },
+    { name: "JavaScript", icon: "🟨", color: "#fbbf24", lightColor: "#d97706", level: 90, desc: "JavaScript allows me to create dynamic, interactive, and intelligent web experiences with modern functionality, smooth user interactions, real-time behavior, and powerful frontend logic." },
+    { name: "Redux Toolkit", icon: "🔴", color: "#a855f7", lightColor: "#7c3aed", level: 88, desc: "Redux Toolkit helps me manage complex application states efficiently, making large-scale React applications faster, cleaner, more organized, and easier to maintain." },
+    { name: "API Integration", icon: "🔗", color: "#10b981", lightColor: "#059669", level: 85, desc: "API Integration allows me to connect frontend applications with powerful backend services, enabling real-time data flow, dynamic content, seamless communication, and fully functional user experiences." },
+    { name: "Component Arch", icon: "🏗️", color: "#ec4899", lightColor: "#db2777", level: 90, desc: "Component Architecture helps me build scalable and maintainable applications using clean, reusable, and well-structured components for better performance and development efficiency." },
+    { name: "State Management", icon: "📦", color: "#f43f5e", lightColor: "#e11d48", level: 88, desc: "State Management allows me to efficiently handle and share application data across components using modern tools like Redux, Context API, and Zustand for smooth, predictable, and scalable app behavior." }
   ];
 
   // Right side skills
   const rightSkills = [
-    { name: "HTML5", icon: "🌐", color: "#f97316", lightColor: "#ea580c", level: 95, desc: "Semantic markup, SEO friendly" },
-    { name: "CSS3", icon: "🎨", color: "#3b82f6", lightColor: "#2563eb", level: 92, desc: "Flexbox, Grid, Animations" },
-    { name: "Tailwind CSS", icon: "💨", color: "#38bdf8", lightColor: "#0284c7", level: 93, desc: "Utility-first CSS framework" },
-    { name: "Bootstrap", icon: "🅱️", color: "#a855f7", lightColor: "#7c3aed", level: 85, desc: "Responsive grid system" },
-    { name: "Responsive", icon: "📱", color: "#10b981", lightColor: "#059669", level: 92, desc: "Mobile-first approach" },
-    { name: "UI Development", icon: "✨", color: "#f43f5e", lightColor: "#e11d48", level: 90, desc: "Pixel-perfect interfaces" }
+    { name: "HTML5", icon: "🌐", color: "#f97316", lightColor: "#ea580c", level: 95, desc: "HTML5 provides the foundation of web development, allowing me to structure content with semantic, SEO-friendly, and accessible markup for modern and responsive web applications." },
+    { name: "CSS3", icon: "🎨", color: "#3b82f6", lightColor: "#2563eb", level: 92, desc: "CSS3 enables me to design visually appealing, responsive, and animated user interfaces using modern layout systems like Flexbox and Grid for a smooth user experience." },
+    { name: "Tailwind CSS", icon: "💨", color: "#38bdf8", lightColor: "#0284c7", level: 93, desc: "Tailwind CSS allows me to build fast, responsive, and modern user interfaces using a utility-first approach that keeps designs clean, consistent, and highly customizable." },
+    { name: "Bootstrap", icon: "🅱️", color: "#a855f7", lightColor: "#7c3aed", level: 85, desc: "Bootstrap helps me quickly create responsive and mobile-friendly web layouts using a powerful grid system and ready-made components for faster UI development." },
+    { name: "Responsive", icon: "📱", color: "#10b981", lightColor: "#059669", level: 92, desc: "Responsive design ensures my websites adapt perfectly to all screen sizes, providing a smooth and consistent user experience with a mobile-first approach." },
+    { name: "UI Development", icon: "✨", color: "#f43f5e", lightColor: "#e11d48", level: 90, desc: "UI Development focuses on creating visually appealing, intuitive, and pixel-perfect interfaces that enhance user experience and bring designs to life with precision and consistency." }
   ];
 
   // Check mobile
