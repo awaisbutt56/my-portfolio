@@ -333,7 +333,7 @@ const AboutHero = () => {
                   <div className="flex-1">
                     <p className={`text-xs font-mono ${currentTheme.textMuted}`}>LOCATION REQUIRED</p>
                     <p className={`text-sm ${currentTheme.text} font-medium`}>
-                      Please enable location access to see distance from Lahore.
+                      Enable location to see the distance between us
                     </p>
                   </div>
                   <button
