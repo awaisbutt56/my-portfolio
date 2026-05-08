@@ -12,7 +12,7 @@ const AboutHero = () => {
   const [distance, setDistance] = useState(null);
   const [locationPermission, setLocationPermission] = useState('pending');
   const [imageIndex, setImageIndex] = useState(0);
-  const [showSecondText, setShowSecondText] = useState(false); // ✅ timer ab distance ke baad chalega
+  const [showSecondText, setShowSecondText] = useState(false);
 
   const lahoreCoords = { lat: 31.5497, lon: 74.3436 };
   const images = [aboutHeroImg, aboutHeroImgone];
@@ -48,21 +48,18 @@ const AboutHero = () => {
     );
   };
 
-  useEffect(() => {
-    getUserLocation();
-  }, []);
+  // ❌ Removed auto location request on mount - now only manual via button
 
-  // ✅ FIX: Timer start karo jab distance available ho (matlab card render hone wala hai)
+  // Timer for second text - starts only when distance is available
   useEffect(() => {
     if (locationPermission === 'granted' && distance !== null) {
-      // Reset showSecondText to false when card first appears
       setShowSecondText(false);
       const timer = setTimeout(() => {
         setShowSecondText(true);
       }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [locationPermission, distance]); // distance change hone par timer reset
+  }, [locationPermission, distance]);
 
   useEffect(() => {
     const handleMouseMove = (e) => setMousePosition({ x: e.clientX, y: e.clientY });
@@ -236,7 +233,7 @@ const AboutHero = () => {
           
           <div className="space-y-8">
             <motion.div variants={itemVariants} className="relative group">
-              {/* Location Permission Pending State - Allow Button */}
+              {/* Location Permission Pending State - Allow Button (Manual) */}
               {locationPermission === 'pending' && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -258,7 +255,7 @@ const AboutHero = () => {
                 </motion.div>
               )}
 
-              {/* Location Granted State - Shows distance card with changing text (FIXED TIMING) */}
+              {/* Location Granted State - Shows distance card with changing text after 3 seconds */}
               {locationPermission === 'granted' && distance !== null && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -276,7 +273,6 @@ const AboutHero = () => {
                         </svg>
                       </div>
                       <div>
-                        {/* Text changes after 3 seconds (now reliably after distance is known) */}
                         <AnimatePresence mode="wait">
                           {!showSecondText ? (
                             <motion.div
