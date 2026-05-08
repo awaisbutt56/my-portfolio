@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 // Replace with your own image path
-import myImage from "../assets/images/navbarr.jpg";
+import myImage from "../assets/images/dpfirstcard.jpeg";
+
 
 const TOTAL_SECONDS = 5;
 const MESSAGES = [
