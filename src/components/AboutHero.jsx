@@ -12,7 +12,7 @@ const AboutHero = () => {
   const [distance, setDistance] = useState(null);
   const [locationPermission, setLocationPermission] = useState('pending');
   const [imageIndex, setImageIndex] = useState(0);
-  const [showSecondText, setShowSecondText] = useState(false); // NEW: For text change after 3 seconds
+  const [showSecondText, setShowSecondText] = useState(false); // ✅ timer ab distance ke baad chalega
 
   const lahoreCoords = { lat: 31.5497, lon: 74.3436 };
   const images = [aboutHeroImg, aboutHeroImgone];
@@ -48,22 +48,21 @@ const AboutHero = () => {
     );
   };
 
-  // Auto-request location on mount
   useEffect(() => {
     getUserLocation();
   }, []);
 
-  // NEW: Change text after 3 seconds when location is granted
+  // ✅ FIX: Timer start karo jab distance available ho (matlab card render hone wala hai)
   useEffect(() => {
-    if (locationPermission === 'granted') {
+    if (locationPermission === 'granted' && distance !== null) {
+      // Reset showSecondText to false when card first appears
+      setShowSecondText(false);
       const timer = setTimeout(() => {
         setShowSecondText(true);
       }, 3000);
       return () => clearTimeout(timer);
-    } else {
-      setShowSecondText(false);
     }
-  }, [locationPermission]);
+  }, [locationPermission, distance]); // distance change hone par timer reset
 
   useEffect(() => {
     const handleMouseMove = (e) => setMousePosition({ x: e.clientX, y: e.clientY });
@@ -259,8 +258,8 @@ const AboutHero = () => {
                 </motion.div>
               )}
 
-              {/* Location Granted State - Shows distance card with changing text */}
-              {locationPermission === 'granted' && distance && (
+              {/* Location Granted State - Shows distance card with changing text (FIXED TIMING) */}
+              {locationPermission === 'granted' && distance !== null && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -277,7 +276,7 @@ const AboutHero = () => {
                         </svg>
                       </div>
                       <div>
-                        {/* Text changes after 3 seconds */}
+                        {/* Text changes after 3 seconds (now reliably after distance is known) */}
                         <AnimatePresence mode="wait">
                           {!showSecondText ? (
                             <motion.div
