@@ -48,7 +48,7 @@ const AboutHero = () => {
     );
   };
 
-  // ✅ Page load پر خود بخود location request
+  // Page load پر خود بخود location request
   useEffect(() => {
     getUserLocation();
   }, []);
@@ -237,7 +237,7 @@ const AboutHero = () => {
           <div className="space-y-8">
             <motion.div variants={itemVariants} className="relative group">
               
-              {/* ✅ Pending state: auto requesting location - no button, just a loader */}
+              {/* ✅ Pending state: auto requesting location - loader */}
               {locationPermission === 'pending' && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -255,7 +255,7 @@ const AboutHero = () => {
                 </motion.div>
               )}
 
-              {/* ✅ Granted state - distance card with auto-changing text after 3 seconds */}
+              {/* ✅ Granted state - distance card */}
               {locationPermission === 'granted' && distance !== null && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -318,8 +318,32 @@ const AboutHero = () => {
                 </motion.div>
               )}
 
-              {/* ❌ Location Denied State - پوری طرح ہٹا دیا گیا (کچھ نہیں دکھے گا) */}
-
+              {/* ✅ Location Denied State - Enable location button + message */}
+              {locationPermission === 'denied' && (
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className={`flex items-center gap-4 px-5 py-4 rounded-xl ${currentTheme.cardBg} backdrop-blur-md border ${currentTheme.border}`}
+                >
+                  <div className="flex-shrink-0">
+                    <svg className="w-8 h-8 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <p className={`text-xs font-mono ${currentTheme.textMuted}`}>LOCATION REQUIRED</p>
+                    <p className={`text-sm ${currentTheme.text} font-medium`}>
+                      Please enable location access to see distance from Lahore.
+                    </p>
+                  </div>
+                  <button
+                    onClick={getUserLocation}
+                    className={`px-4 py-2 rounded-lg ${currentTheme.cardBg} border ${currentTheme.border} text-sm font-semibold hover:scale-105 transition-all duration-300 ${currentTheme.text}`}
+                  >
+                    Try Again
+                  </button>
+                </motion.div>
+              )}
             </motion.div>
 
             <motion.div variants={itemVariants} className="inline-flex items-center space-x-3 px-4 py-1 rounded-full bg-white/5 border border-white/10 w-fit backdrop-blur-sm">
