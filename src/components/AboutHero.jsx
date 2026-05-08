@@ -297,7 +297,7 @@ const AboutHero = () => {
                                 AWAY FROM YOUR CURRENT LOCATION,
                               </p>
                               <p className={`text-sm font-semibold ${currentTheme.text}`}>
-                                ACCORDING TO YOUR IP ADDRESS .
+                                ACCORDING TO YOUR IP ADDRESS
                               </p>
                             </motion.div>
                           )}

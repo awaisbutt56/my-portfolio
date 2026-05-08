@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import navImg from '../assets/images/navbarr.jpg';
+import navImg from "../assets/images/navImgone.jpeg";
 
 const HomeheroOne = () => {
   const navigate = useNavigate();
@@ -251,6 +251,7 @@ const HomeheroOne = () => {
   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
 />
               </div>
+              
 
               {/* Heartbeat Pulse */}
               <div className="absolute inset-0 rounded-full bg-pink-500/40 animate-heartbeat opacity-0 group-hover:opacity-100"></div>

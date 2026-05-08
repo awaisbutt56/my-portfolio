@@ -193,7 +193,7 @@ const CinematicScript = ({ onComplete, theme, toggleTheme }) => {
                     ? 'bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-400/40 text-pink-400'
                     : 'bg-gradient-to-r from-pink-500/30 to-purple-500/30 border border-pink-500/50 text-pink-600'}`}
               >
-                Answer Me 💖
+                STAY 💖
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -204,7 +204,7 @@ const CinematicScript = ({ onComplete, theme, toggleTheme }) => {
                     ? 'text-gray-500 border border-white/10 bg-white/5 hover:border-purple-500/30 hover:text-purple-400'
                     : 'text-gray-600 border border-black/10 bg-black/5 hover:border-purple-500/50 hover:text-purple-600'}`}
               >
-                Stay or Leave
+                Leave 💘
               </motion.button>
             </motion.div>
           )}
@@ -610,22 +610,9 @@ const TheGame = ({ theme, toggleTheme }) => {
                         ? 'bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-400/40 text-pink-400'
                         : 'bg-gradient-to-r from-pink-500/30 to-purple-500/30 border border-pink-500/50 text-pink-600'}`}
                   >
-                    Stay 💖
+                    Always Here ♾️
                   </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.97 }}
-                    onClick={() => {
-                      setFinalChoice('leave');
-                      setTimeout(() => { window.location.href = '/'; }, 4000);
-                    }}
-                    className={`px-8 py-3 rounded-xl text-xs sm:text-sm font-mono tracking-[0.2em] uppercase transition-all
-                      ${theme === 'dark' 
-                        ? 'text-gray-500 border border-white/10 bg-white/5 hover:border-gray-500/30'
-                        : 'text-gray-600 border border-black/10 bg-black/5 hover:border-gray-500/50'}`}
-                  >
-                    Leave 💔
-                  </motion.button>
+                  
                 </motion.div>
               )}
             </AnimatePresence>
