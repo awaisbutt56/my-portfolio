@@ -6,7 +6,7 @@ const HomeTwoLoader = () => {
   const canvasRef = useRef(null);
   
   const statusSteps = [
-    "✨ INITIALIZING ROMANCE 2.0...",
+    "✨ INITIALIZING 2.0...",
     "⚡ UPGRADING VIBE CHIP...",
     "💖 LOADING PREMIUM MEMORIES...",
     "🌟 STABILIZING EMOTIONAL CORE...",
