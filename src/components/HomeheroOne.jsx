@@ -4,7 +4,7 @@ import navImg from "../assets/images/navImgone.jpeg";
 
 const HomeheroOne = () => {
   const navigate = useNavigate();
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(20);
   const [lives, setLives] = useState(2);
   const [isLocked, setIsLocked] = useState(false);
   const [shuffledOptions, setShuffledOptions] = useState([]);
@@ -15,10 +15,10 @@ const HomeheroOne = () => {
 
 
   const allOptions = [
-    { text: "The Only Person Who Rules My Heart ❤️", correct: true },
-    { text: "Just A Random Notification 💌", correct: false },
-    { text: "The Admin with Full Access to My Soul 🔑", correct: false },
-    { text: "Just Another Professional Overthinker 🤯", correct: false },
+    { text: "🔍 Review your experience", correct: false },
+    { text: "🚀 Start a new project", correct: true },
+    { text: "💡 Get inspiration", correct: false },
+    { text: "🎮 Just having fun", correct: true },
   ];
 
   const fullText = "AWAIMA PROTOCOL";
@@ -287,8 +287,8 @@ const HomeheroOne = () => {
                 <span className="inline-block w-0.5 h-8 md:h-12 bg-pink-500 ml-1 animate-blink"></span>
               </h1>
 
-              <p className="text-slate-400 text-[9px] md:text-[11px] mb-8 uppercase tracking-[0.2em] font-medium leading-relaxed">
-                A developer to the world... but who are you to me? <br className="hidden sm:block"/>
+              <p className="text-slate-400 text-[14px] md:text-[16px] mb-8 uppercase tracking-[0.2em] font-medium leading-relaxed">
+                What's your mission today? <br className="hidden sm:block"/>
                 <span className="text-pink-400">Identify yourself to proceed.</span>
               </p>
 
