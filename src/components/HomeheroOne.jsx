@@ -19,6 +19,7 @@ const HomeheroOne = () => {
     { text: "🚀 Start a new project", correct: true },
     { text: "💡 Get inspiration", correct: false },
     { text: "🎮 Just having fun", correct: true },
+    
   ];
 
   const fullText = "AWAIMA PROTOCOL";
@@ -165,7 +166,7 @@ const HomeheroOne = () => {
     } else if (timeLeft === 0) {
       setIsLocked(true);
     }
-  }, [timeLeft, isLocked]);
+  }, [timeLeft , isLocked]);
 
   const handleChoice = (opt, e) => {
     if (isLocked) return;
@@ -353,8 +354,8 @@ const HomeheroOne = () => {
               </h2>
 
               <p className="text-slate-300 mb-6 font-medium leading-relaxed text-xs md:text-base italic max-w-[280px] md:max-w-md mx-auto">
-                "That wasn't supposed to be this hard... <br className="hidden sm:block"/>
-                Or did you really forget me that quickly? 😉 <br/>
+                "Something feels off... <br className="hidden sm:block"/>
+                You picked the wrong mission briefing. 😉 <br/>
                 <span className="text-pink-400">Try again — I'm still waiting.</span>"
               </p>
 
