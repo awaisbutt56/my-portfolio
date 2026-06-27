@@ -12,7 +12,7 @@ const HomeLoader = () => {
     "WELCOME_TO_OUR_🌸❤️"
   ];
 
-  const floatingElements = ["❤️", "🌸", "💖", "✨", "🌷", "💍"];
+  const floatingElements = ["❤️", "🌸", "💖", "✨", "🌷", "🥀","🎀"];
 
   // --- CONTENT FIXED: Emojis jump nahi karenge re-render pe ---
   const staticEmojis = useMemo(() => {
