@@ -287,19 +287,20 @@ const AboutHero = () => {
                             </motion.div>
                           ) : (
                             <motion.div
-                              key="second-text"
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -10 }}
-                              transition={{ duration: 0.5 }}
-                            >
-                              <p className={`text-xs font-mono ${currentTheme.textMuted} uppercase tracking-wider`}>
-                                AWAY FROM YOUR CURRENT LOCATION,
-                              </p>
-                              <p className={`text-sm font-semibold ${currentTheme.text}`}>
-                                ACCORDING TO YOUR IP ADDRESS
-                              </p>
-                            </motion.div>
+  key="second-text"
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  exit={{ opacity: 0, y: -10 }}
+  transition={{ duration: 0.5 }}
+>
+  <p className={`text-xs font-mono ${currentTheme.textMuted} uppercase tracking-wider`}>
+    AWAY FROM YOUR CURRENT LOCATION,
+  </p>
+  {/* ✅ Mobile par text-xs kiya aur desktop par wapis text-sm ho jayega */}
+  <p className={`text-xs sm:text-sm font-semibold ${currentTheme.text}`}>
+    ACCORDING TO YOUR IP ADDRESS
+  </p>
+</motion.div>
                           )}
                         </AnimatePresence>
                         
