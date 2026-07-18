@@ -168,17 +168,13 @@ const AboutHero = () => {
     /* ✅ Update 1: pt-24 (padding-top) add kiya taake navbar k liye space bane aur overlap na ho */
     <section className={`relative min-h-screen ${currentTheme.bg} ${currentTheme.text} flex flex-col justify-center items-center px-6 pt-16 pb-12 overflow-hidden transition-colors duration-700 z-10`}>
       
-      {/* ✅ Absolute Fix: Inline styles k sath mobile par 3 lines k left par perfect gap */}
+      {/* ✅ Update 2: top-28 kiya taake navbar k options k sath clash na ho */}
       <motion.button
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5 }}
         onClick={toggleTheme}
-        className={`fixed z-50 p-2.5 md:p-3 rounded-full ${currentTheme.cardBg} backdrop-blur-xl ${currentTheme.border} border shadow-2xl transition-all duration-300 hover:scale-110`}
-        style={{
-          top: window.innerWidth < 768 ? '18px' : '112px', // Mobile par 18px, Desktop par top-28 (112px)
-          right: window.innerWidth < 768 ? '75px' : '24px', // Mobile par 3 lines se pehle (75px), Desktop par right-6 (24px)
-        }}
+        className={`fixed top-28 right-6 z-40 p-3 rounded-full ${currentTheme.cardBg} backdrop-blur-xl ${currentTheme.border} border shadow-2xl transition-all duration-300 hover:scale-110`}
       >
         {isDark ? (
           <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
