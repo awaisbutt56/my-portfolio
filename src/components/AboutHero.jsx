@@ -296,7 +296,7 @@ const AboutHero = () => {
                               <p className={`text-xs font-mono ${currentTheme.textMuted} uppercase tracking-wider`}>
                                 AWAY FROM YOUR CURRENT LOCATION,
                               </p>
-                              <p className={`text-sm font-semibold ${currentTheme.text}`}>
+                              <p className={`text-xm font-semibold ${currentTheme.text}`}>
                                 ACCORDING TO YOUR IP ADDRESS
                               </p>
                             </motion.div>
