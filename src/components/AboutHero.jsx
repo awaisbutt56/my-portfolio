@@ -48,12 +48,10 @@ const AboutHero = () => {
     );
   };
 
-  // Page load پر خود بخود location request
   useEffect(() => {
     getUserLocation();
   }, []);
 
-  // Timer for second text - starts only when distance is available
   useEffect(() => {
     if (locationPermission === 'granted' && distance !== null) {
       setShowSecondText(false);
@@ -167,14 +165,16 @@ const AboutHero = () => {
   };
 
   return (
-    <section className={`relative min-h-screen ${currentTheme.bg} ${currentTheme.text} flex flex-col justify-center items-center px-6 overflow-hidden transition-colors duration-700`}>
+    /* ✅ Update 1: pt-24 (padding-top) add kiya taake navbar k liye space bane aur overlap na ho */
+    <section className={`relative min-h-screen ${currentTheme.bg} ${currentTheme.text} flex flex-col justify-center items-center px-6 pt-16 pb-12 overflow-hidden transition-colors duration-700 z-10`}>
       
+      {/* ✅ Update 2: top-28 kiya taake navbar k options k sath clash na ho */}
       <motion.button
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5 }}
         onClick={toggleTheme}
-        className={`fixed top-6 right-6 z-50 p-3 rounded-full ${currentTheme.cardBg} backdrop-blur-xl ${currentTheme.border} border shadow-2xl transition-all duration-300 hover:scale-110`}
+        className={`fixed top-28 right-6 z-40 p-3 rounded-full ${currentTheme.cardBg} backdrop-blur-xl ${currentTheme.border} border shadow-2xl transition-all duration-300 hover:scale-110`}
       >
         {isDark ? (
           <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -187,7 +187,8 @@ const AboutHero = () => {
         )}
       </motion.button>
 
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Background elements with low z-index */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         {bubbles.map((bubble) => (
           <motion.div
             key={bubble.id}
@@ -208,7 +209,7 @@ const AboutHero = () => {
         ))}
       </div>
 
-      <div className={`absolute inset-0 opacity-30 pointer-events-none ${
+      <div className={`absolute inset-0 opacity-30 pointer-events-none z-0 ${
         isDark ? 'bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-500/10 via-transparent to-transparent' : 
         'bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-400/10 via-transparent to-transparent'
       }`} />
@@ -219,6 +220,7 @@ const AboutHero = () => {
         transition={{ type: "tween", ease: "backOut", duration: 0.8 }}
       />
 
+      {/* Main Content Container */}
       <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-6xl w-full z-10 relative">
         <AnimatePresence>
           {glitch && (
@@ -237,7 +239,6 @@ const AboutHero = () => {
           <div className="space-y-8">
             <motion.div variants={itemVariants} className="relative group">
               
-              {/* ✅ Pending state: auto requesting location - loader */}
               {locationPermission === 'pending' && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -255,7 +256,6 @@ const AboutHero = () => {
                 </motion.div>
               )}
 
-              {/* ✅ Granted state - distance card */}
               {locationPermission === 'granted' && distance !== null && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -318,7 +318,6 @@ const AboutHero = () => {
                 </motion.div>
               )}
 
-              {/* ✅ Location Denied State - Enable location button + message */}
               {locationPermission === 'denied' && (
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -419,8 +418,9 @@ const AboutHero = () => {
         </div>
       </motion.div>
 
-      <div className={`absolute top-12 left-12 w-20 h-20 border-t-2 border-l-2 ${currentTheme.border} opacity-40`}></div>
-      <div className={`absolute bottom-12 right-12 w-20 h-20 border-b-2 border-r-2 ${currentTheme.border} opacity-40`}></div>
+      {/* Border Corners decoration - Hidden on mobile to avoid overlap */}
+      <div className={`hidden md:block absolute top-24 left-12 w-20 h-20 border-t-2 border-l-2 ${currentTheme.border} opacity-40`}></div>
+      <div className={`hidden md:block absolute bottom-12 right-12 w-20 h-20 border-b-2 border-r-2 ${currentTheme.border} opacity-40`}></div>
     </section>
   );
 };

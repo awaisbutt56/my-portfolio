@@ -20,8 +20,8 @@ const AppContent = () => {
 
   return (
     <>
-      {/* Logic: Sirf '/' path par Navbar dikhao */}
-      {location.pathname === '/' && <Navbar />}
+      {/* Logic: Ab '/', '/HeroTwo' aur '/about' teeno paths par Navbar dikhega */}
+      {(location.pathname === '/' || location.pathname === '/HeroTwo' || location.pathname === '/about') && <Navbar />}
 
       <Routes>
         <Route path='/' element={<Home />} />

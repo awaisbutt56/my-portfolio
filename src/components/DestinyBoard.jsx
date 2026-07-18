@@ -64,6 +64,7 @@ const DestinyBoard = ({ totalScore, setTotalScore }) => {
       setUnlockedCards(prev => [...prev, card.id]);
     }
   };
+  
 
   return (
     <div className="relative p-3 md:p-6 w-full max-w-xl mx-auto bg-black/90 backdrop-blur-xl rounded-3xl border border-white/10 shadow-2xl transition-all duration-700">
@@ -93,7 +94,7 @@ const DestinyBoard = ({ totalScore, setTotalScore }) => {
 
 </div>
         <div className="text-right">
-          <span className="text-[8px] text-gray-500 uppercase font-bold tracking-widest">Available EP</span>
+          <span className="text-[10px] text-white uppercase font-bold tracking-widest">Available EP</span>
           <div className="flex items-center justify-end gap-1 md:gap-2">
             <Zap size={16} className="text-yellow-400 fill-yellow-400 animate-pulse" />
             <p className="text-xl md:text-3xl font-black text-white italic leading-none">{totalScore}</p>
@@ -131,7 +132,7 @@ const DestinyBoard = ({ totalScore, setTotalScore }) => {
                     </h3>
                   </div>
 
-                  <p className={`text-[9px] md:text-[10px] uppercase font-black tracking-widest mb-1 ${isPurchased ? "text-white/70" : "text-gray-500"}`}>
+                  <p className={`text-[9px] md:text-[10px] uppercase font-black tracking-widest mb-1 ${isPurchased ? "text-white/70" : "text-white"}`}>
                     {card.subtitle} — {card.price} EP
                   </p>
 
@@ -159,7 +160,7 @@ const DestinyBoard = ({ totalScore, setTotalScore }) => {
                       className={`px-3 py-1.5 md:px-4 md:py-2 rounded-xl font-bold text-[10px] md:text-xs uppercase tracking-tighter transition-all
                         ${canAfford 
                           ? "bg-rose-500 text-white hover:bg-rose-600 shadow-lg shadow-rose-500/30" 
-                          : "bg-white/5 text-gray-600 border border-white/10"
+                          : "bg-white/5 text-white border border-white/10"
                         }`}
                     >
                       Unlock

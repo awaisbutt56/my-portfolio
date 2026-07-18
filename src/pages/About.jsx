@@ -28,6 +28,7 @@ const About = () => {
 
   return (
     <ThemeProvider>
+      {/* Humne padding hata di hai taake transparent navbar ke peeche background sahi se flow kare */}
       <div className="animate-in fade-in duration-700">
         <AboutHero />
         <MyStory />
